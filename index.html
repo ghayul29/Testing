@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Undangan Pernikahan</title>
+<script>window.__errs = []; window.addEventListener("error", function (e) { window.__errs.push((e.message || "galat") + " (baris " + (e.lineno || "?") + ")"); });</script>
+<script>
+/* ============================================================
+   BAGIAN YANG ANDA EDIT. Ganti teks di dalam tanda kutip saja.
+   Semua tulisan di undangan diambil dari sini.
+   Nama tamu diambil dari link, contoh: alamat-situs/?to=Budi+Santoso
+   ============================================================ */
+var CONFIG = {
+  // Nama mempelai
+  namaCPP: "Wahyudin Gunawan",
+  namaCPW: "Riska Nurfaoziah",
+
+  // Instagram mempelai, tulis tanpa tanda @. Kosongkan jika tidak dipakai.
+  igCPP: "",
+  igCPW: "",
+
+  // Nama orang tua
+  ayahCPP: "Sarnoto",
+  ibuCPP: "Karniti",
+  ayahCPW: "Rahayu",
+  ibuCPW: "Buwran",
+
+  // Akad. tanggal ditulis tahun-bulan-tanggal, jam mulai ditulis 24 jam
+  akad: {
+    tanggal: "2026-12-12",
+    mulai: "08:00",
+    jam: "08.00 WIB sampai selesai",
+    tempat: "BTN Krangkeng",
+    alamat: "BTN Bumi karang indah No.2 blok L01, Kalianyar, Kec. Krangkeng, Kabupaten Indramayu, Jawa Barat 45284",
+    maps: "https://maps.app.goo.gl/YZfPnPZjWTB6S8fs8"            // boleh kosong. Isi link Google Maps untuk lokasi persis
+  },
+
+  // Resepsi
+  resepsi: {
+    tanggal: "2026-12-12",
+    jam: "11.00 sampai 14.00 WIB",
+    tempat: "BTN Krangkeng",
+    alamat: "BTN Bumi karang indah No.2 blok L01, Kalianyar, Kec. Krangkeng, Kabupaten Indramayu, Jawa Barat 45284",
+    maps: "https://maps.app.goo.gl/YZfPnPZjWTB6S8fs8"
+  },
+
+  // Kisah kami. Hapus semua isi kurung siku ([]) jika bagian ini tidak ingin ditampilkan.
+  kisah: [
+    { tahun: "20XX", judul: "Pertama Bertemu", teks: "Tulis cerita pertama kali kalian bertemu di sini." },
+    { tahun: "20XX", judul: "Mulai Dekat", teks: "Tulis bagaimana kalian mulai saling mengenal." },
+    { tahun: "20XX", judul: "Lamaran", teks: "Tulis cerita momen lamaran di sini." },
+    { tahun: "2026", judul: "Hari Bahagia", teks: "Insya Allah kami melangkah ke jenjang pernikahan." }
+  ],
+
+  // Dress code
+  busana: "Rapih",
+  // Contoh warna yang disarankan. Kosongkan ([]) jika tidak dipakai.
+  warnaBusana: [
+    { nama: "Hitam", hex: "#111014" },
+    { nama: "Merah muda", hex: "#F7A8C8" }
+  ],
+
+  // Siaran langsung (opsional). Isi link YouTube/Zoom, atau kosongkan.
+  streaming: "",
+
+  // Foto prewedding. Taruh file foto di folder "foto" di samping index.html, lalu tulis namanya di sini.
+  // Contoh: foto: ["foto/8.jpg", "foto/7.jpg", "foto/6.jpg"]
+  // Foto pertama tampil paling besar. Jika dikosongkan, yang tampil adalah kotak kosong "Foto prewedding".
+  foto: ["foto/8.jpg", "foto/7.jpg", "foto/6.jpg"],
+  // Foto sebagai background (opsional). Taruh di folder "foto", contoh: "foto/latar1.jpg".
+  // Kosongkan salah satu jika bagian itu ingin tetap polos. Foto potret (tegak) paling cocok.
+  fotoSampul: "",          // dipakai untuk layar pembuka dan beranda jika keduanya tidak diisi sendiri
+  latar: {
+    gerbang: "foto/1.jpg",           // layar "Buka Undangan"
+    beranda: "foto/2.jpg",           // bagian nama mempelai dan hitung mundur
+    acara: "foto/3.jpg",             // bagian Waktu dan Tempat
+    hadiah: "foto/4.jpg",            // bagian Tanda Kasih
+    penutup: "foto/5.jpg"            // bagian Terima kasih
+  },
+
+  // Musik latar (opsional). Taruh file mp3 di folder yang sama dengan index.html, contoh: "lagu.mp3". Kosongkan jika tidak dipakai.
+  musik: "lagu.mp3",
+
+  // Amplop digital. Tambah blok { ... } lagi untuk rekening lain.
+  rekening: [
+    { bank: "BCA", nomor: "3030769316", atasNama: "Wahyudin Gunawan" }
+  ],
+  // Alamat kirim kado fisik (opsional). Kosongkan jika tidak dipakai.
+  alamatKado: "",
+
+  // Link Google Form untuk tombol Tulis
+  formUrl: "https://forms.gle/zXWmrnnMRAtyn3C58",
+
+  // Link CSV dari sheet jawaban Form (File, Bagikan, Publikasikan ke web, pilih tab jawaban dan format CSV).
+  // Jika diisi, ucapan tamu tampil otomatis. Jika kosong, yang tampil adalah ucapanContoh di bawah.
+  sheetCsv: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTeyZb_0I_1Bando7nsyChrURUkW9j-cvTZRUFUM-VnJ_cF0FK0Hzv-GoxSXzXMu7UUflbJxnDYtTWA/pub?gid=1683445551&single=true&output=csv",
+
+  ucapanContoh: [
+    { nama: "Budi Santoso", status: "Hadir", waktu: "28 Sep", teks: "Selamat menempuh hidup baru. Semoga sakinah, mawaddah, warahmah." },
+    { nama: "Siti Rahma", status: "Insya Allah", waktu: "29 Sep", teks: "Barakallahu lakuma. Semoga bisa hadir di hari bahagia kalian." },
+    { nama: "Andi Wijaya", status: "Tidak Hadir", waktu: "30 Sep", teks: "Mohon maaf belum bisa hadir. Doa terbaik untuk kalian berdua." }
+  ]
+};
+window.__cfgOk = true;
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<noscript><style>.gate{display:none!important}body.locked{overflow:auto!important}</style></noscript>
+<style>
+/* Layout: satu kolom sempit seperti kartu undangan cetak, bagian bergantian terang merah muda dan hitam, menu bawah tetap */
+:root {
+  --paper: #FFF4F8;
+  --paper-2: #FBDDE9;
+  --ink: #111014;
+  --ink-soft: #5E4A54;
+  --brass: #C71F66;
+  --brass-soft: #F7A8C8;
+  --line: #EBC3D3;
+  --display: "Cormorant Garamond", "Times New Roman", serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.65;
+}
+body.locked { overflow: hidden; }
+.wrap { max-width: 34rem; margin-inline: auto; }
+section { padding: 4rem 1.25rem; text-align: center; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.label { font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: var(--brass); font-weight: 600; }
+.title { font-size: 2.25rem; margin-top: .75rem; }
+
+/* Layar pembuka */
+.gate { position: fixed; inset: 0; z-index: 30; background: var(--ink); color: var(--paper); display: grid; place-items: center; overflow-y: auto; padding: 2rem 1.25rem; text-align: center; transition: opacity .5s ease, transform .5s ease; }
+.gate.leaving { opacity: 0; transform: scale(1.03); pointer-events: none; }
+.gate-inner { max-width: 26rem; width: 100%; }
+.gate .label { color: var(--brass-soft); }
+.gate h1 { font-size: clamp(2.5rem, 11vw, 3.5rem); line-height: 1.02; margin-block: 1.25rem; font-style: italic; }
+.gate h1 span.amp-s, .cover h1 span.amp-s { display: block; font-size: .42em; font-style: normal; letter-spacing: .3em; color: var(--brass-soft); margin-block: .4rem; }
+.gate .date { font-family: var(--display); font-size: 1.35rem; }
+.gate-to { margin-top: 1.75rem; font-size: .875rem; color: var(--brass-soft); }
+.gate-to b { display: block; font-family: var(--display); font-size: 1.9rem; font-style: italic; font-weight: 600; color: var(--paper); margin-top: .2rem; overflow-wrap: anywhere; }
+.gate-note { margin-top: .6rem; font-size: .75rem; color: #C9AEBB; }
+.btn.open { margin-top: 1.75rem; background: var(--brass-soft); border-color: var(--brass-soft); color: var(--ink); padding: .9rem 2rem; font-weight: 600; }
+.btn.open:hover { background: var(--paper); border-color: var(--paper); }
+
+/* Sampul */
+.cover { background: var(--ink); color: var(--paper); padding-block: 5rem 4.5rem; }
+.cover .label { color: var(--brass-soft); }
+.cover h1 { font-size: clamp(2.75rem, 12vw, 4rem); line-height: 1.02; margin-block: 1.75rem; font-style: italic; }
+.cover .date { font-family: var(--display); font-size: 1.5rem; }
+.cover .rule { width: 4rem; height: 1px; background: var(--brass-soft); margin: 2rem auto; border: 0; }
+
+/* Profesi mempelai */
+.duo { display: flex; justify-content: center; gap: .75rem; margin-top: 1.25rem; }
+.ico { width: 2.75rem; height: 2.75rem; border-radius: 50%; border: 1px solid var(--brass-soft); display: grid; place-items: center; color: var(--brass-soft); }
+.person .ico { margin: 0 auto .6rem; border-color: var(--brass); color: var(--brass); }
+.role { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--brass); font-weight: 600; margin-bottom: .35rem; }
+.snippet { font-family: var(--mono); font-size: .75rem; line-height: 1.7; text-align: left; margin: 1rem auto 0; padding: .8rem 1rem; max-width: 17rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.snippet.term { background: var(--ink); color: var(--brass-soft); }
+.snippet.resep { background: #FFFFFF; color: var(--ink); border: 1px dashed var(--brass); }
+.opening .wrap { max-width: 44rem; }
+.ig { display: inline-block; margin-top: .6rem; font-size: .875rem; color: var(--brass); text-decoration: none; font-weight: 500; overflow-wrap: anywhere; }
+.ig:hover { text-decoration: underline; }
+
+/* Hitung mundur */
+.count { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; max-width: 22rem; margin: 2rem auto 0; }
+.count div { border: 1px solid var(--brass-soft); padding: .75rem .25rem; }
+.count b { display: block; font-family: var(--display); font-size: 2rem; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.count small { font-size: .6875rem; letter-spacing: .15em; text-transform: uppercase; opacity: .8; }
+.cover .btn.cal { margin-top: 1.5rem; background: transparent; color: var(--paper); border-color: var(--brass-soft); }
+.cover .btn.cal:hover { background: var(--brass-soft); color: var(--ink); }
+
+/* Salam dan mempelai */
+.opening p.verse { font-family: var(--display); font-style: italic; font-size: 1.3rem; color: var(--ink-soft); max-width: 28rem; margin: 1.25rem auto 0; }
+.opening p.ref { font-size: .8125rem; color: var(--ink-soft); margin-top: .5rem; }
+.opening p.intro { margin-top: 1.5rem; max-width: 28rem; margin-inline: auto; }
+.couple { display: grid; gap: 2.25rem; margin-top: 2.5rem; }
+.person h2 { font-size: 2.25rem; font-style: italic; }
+.person .parents { color: var(--ink-soft); font-size: .9375rem; margin-top: .5rem; }
+.amp { font-family: var(--display); font-size: 2.5rem; color: var(--brass); font-style: italic; line-height: 1; }
+
+/* Kisah */
+.story { background: var(--paper-2); }
+.timeline { list-style: none; margin: 2.5rem 0 0; padding: 0 0 0 1.25rem; border-left: 1px solid var(--brass); display: grid; gap: 1.75rem; text-align: left; }
+.timeline li { position: relative; min-width: 0; }
+.timeline li::before { content: ""; position: absolute; left: calc(-1.25rem - 4px); top: .7rem; width: 7px; height: 7px; border-radius: 50%; background: var(--brass); }
+.tl-year { font-family: var(--display); font-style: italic; font-size: 1.5rem; color: var(--brass); line-height: 1.2; }
+.timeline h3 { font-size: 1.35rem; font-weight: 600; }
+.timeline p { color: var(--ink-soft); font-size: .9375rem; margin-top: .2rem; overflow-wrap: anywhere; }
+
+/* Acara */
+.events { border-top: 1px solid var(--line); }
+.event-list { display: grid; gap: 1.25rem; margin-top: 2.25rem; text-align: left; }
+.event { background: #FFFFFF; color: var(--ink); border: 1px solid var(--line); padding: 1.5rem 1.25rem; }
+.event h3 { font-size: 1.75rem; font-style: italic; }
+.event dl { display: grid; grid-template-columns: 5.5rem 1fr; gap: .5rem 1rem; margin: 1rem 0 0; }
+.event dt { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--brass); font-weight: 600; padding-top: .2rem; }
+.event dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.btn {
+  display: inline-block; margin-top: 1.25rem; padding: .75rem 1.5rem; background: var(--ink); color: var(--paper);
+  text-decoration: none; font-size: .875rem; font-weight: 500; letter-spacing: .06em; border: 1px solid var(--ink);
+  font-family: var(--body); cursor: pointer;
+}
+.btn:hover { background: var(--brass); border-color: var(--brass); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn:focus-visible, .chat-log:focus-visible, .nav a:focus-visible, .music:focus-visible, .ig:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+.attire { margin-top: 2.5rem; }
+.attire-text { font-family: var(--display); font-size: 1.5rem; font-style: italic; margin-top: .4rem; }
+.swatches { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 1.25rem; }
+.swatches li { display: grid; justify-items: center; gap: .35rem; font-size: .75rem; color: var(--ink-soft); }
+.swatches i { width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 1px solid var(--ink-soft); display: block; }
+.stream { margin-top: 2.5rem; }
+.stream p.ket { color: var(--ink-soft); margin-top: .4rem; }
+
+/* Foto prewedding */
+.gallery { background: var(--ink); color: var(--paper); }
+.gallery .label { color: var(--brass-soft); }
+.gallery .wrap { max-width: 44rem; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; margin-top: 2rem; }
+.shot { display: block; width: 100%; padding: 0; border: 0; background: #26202A; cursor: zoom-in; aspect-ratio: 4 / 5; overflow: hidden; }
+.shot:first-child, .shot.wide { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+.shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shot.ph { cursor: default; display: grid; place-items: center; border: 1px dashed var(--brass-soft); background: transparent; color: var(--brass-soft); font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase; }
+.shot:focus-visible, .lightbox button:focus-visible { outline: 2px solid var(--brass-soft); outline-offset: 2px; }
+.lightbox { position: fixed; inset: 0; z-index: 40; background: rgba(10, 8, 12, .95); display: grid; place-items: center; padding: 1rem; }
+.lightbox img { max-width: 100%; max-height: 86vh; display: block; }
+.lightbox button { position: absolute; top: calc(env(safe-area-inset-top, 0px) + .75rem); right: .75rem; background: var(--paper); color: var(--ink); border: 0; padding: .6rem 1rem; font: 600 .875rem var(--body); cursor: pointer; }
+
+/* Ucapan dan doa, tampilan chat */
+.chat { margin-top: 2rem; border: 1px solid var(--line); background: var(--paper-2); text-align: left; }
+.chat-head { background: var(--ink); color: var(--paper); padding: .9rem 1rem; display: flex; justify-content: space-between; align-items: baseline; gap: .75rem; flex-wrap: wrap; }
+.chat-head b { font-family: var(--display); font-size: 1.25rem; font-weight: 600; }
+.chat-head span { font-size: .8125rem; color: var(--brass-soft); }
+.chat-log { list-style: none; margin: 0; padding: 1rem; display: grid; gap: .9rem; max-height: 26rem; overflow-y: auto; }
+.msg { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: .65rem; align-items: start; }
+.avatar { width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--ink); color: var(--brass-soft); display: grid; place-items: center; font-family: var(--display); font-weight: 600; font-size: 1.1rem; }
+.bubble { background: #FFFFFF; border: 1px solid var(--line); border-radius: 0 14px 14px 14px; padding: .65rem .85rem; min-width: 0; }
+.bubble header { display: flex; flex-wrap: wrap; gap: .25rem .6rem; align-items: baseline; }
+.bubble strong { font-size: .9375rem; overflow-wrap: anywhere; }
+.chip { font-size: .6875rem; letter-spacing: .06em; font-weight: 600; padding: .05rem .5rem; border-radius: 99px; background: var(--brass-soft); color: var(--ink); border: 1px solid var(--brass-soft); }
+.chip.no { background: var(--line); border-color: var(--line); color: var(--ink-soft); }
+.chip.maybe { background: transparent; border-color: var(--brass); color: var(--brass); }
+.time { font-size: .75rem; color: var(--ink-soft); margin-left: auto; }
+.bubble p { margin-top: .25rem; font-size: .9375rem; overflow-wrap: anywhere; }
+.empty { color: var(--ink-soft); font-size: .9375rem; text-align: center; padding: 1rem; }
+.chat-bar { display: flex; gap: .5rem; padding: .75rem; background: var(--ink); }
+.chat-bar .write { flex: 1; display: block; text-align: center; padding: .8rem 1rem; background: var(--brass-soft); color: var(--ink); border: 1px solid var(--brass-soft); text-decoration: none; font-weight: 600; font-size: .9375rem; letter-spacing: .04em; }
+.chat-bar .write:hover { background: var(--paper); border-color: var(--paper); }
+.chat-bar .write:focus-visible { outline: 2px solid var(--paper); outline-offset: 2px; }
+.chat-bar .write[aria-disabled="true"] { opacity: .55; pointer-events: none; }
+.hint { font-size: .8125rem; color: var(--ink-soft); }
+
+/* Hadiah */
+.gift { background: var(--ink); color: var(--paper); }
+.gift .label { color: var(--brass-soft); }
+.gift p.sub { color: #EBCBD8; margin-top: 1rem; max-width: 26rem; margin-inline: auto; }
+.banks { display: grid; gap: 1rem; margin: 2rem auto 0; max-width: 22rem; }
+.bank { border: 1px solid var(--brass-soft); padding: 1.5rem 1rem; }
+.bank b { display: block; font-family: var(--display); font-size: 1.75rem; letter-spacing: .08em; font-variant-numeric: tabular-nums; margin-block: .35rem; overflow-wrap: anywhere; }
+.bank .btn { background: var(--brass-soft); border-color: var(--brass-soft); color: var(--ink); margin-top: .75rem; }
+.bank .btn:hover { background: var(--paper); border-color: var(--paper); }
+.kado { margin: 2rem auto 0; max-width: 22rem; }
+.kado p.addr { margin-top: .4rem; color: #EBCBD8; overflow-wrap: anywhere; }
+
+/* Penutup */
+.closing h2 { font-size: 2.5rem; font-style: italic; margin-top: 1rem; }
+.closing p.thanks { color: var(--ink-soft); max-width: 26rem; margin: 1.25rem auto 0; }
+.closing .sign { font-family: var(--display); font-size: 1.5rem; margin-top: 2rem; }
+footer { text-align: center; font-size: .75rem; color: var(--ink-soft); padding: 0 1.25rem calc(5.5rem + env(safe-area-inset-bottom, 0px)); }
+
+/* Foto sebagai background */
+.has-bg { background-color: var(--ink); background-image: linear-gradient(rgba(17, 16, 20, .55), rgba(17, 16, 20, .82)), var(--bg); background-size: cover; background-position: center; color: var(--paper); }
+.has-bg .label { color: var(--brass-soft); }
+.has-bg .btn.ghost { color: var(--paper); border-color: var(--brass-soft); }
+.has-bg .btn.ghost:hover { background: var(--brass-soft); color: var(--ink); border-color: var(--brass-soft); }
+.has-bg .event .btn.ghost { color: var(--ink); border-color: var(--ink); }
+.has-bg .event .btn.ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.has-bg .attire-text { color: var(--paper); }
+.has-bg .swatches li, .has-bg .stream p.ket, .has-bg .closing p.thanks, .has-bg p.thanks { color: #EBCBD8; }
+.has-bg .swatches i { border-color: var(--paper); }
+
+/* Pesan galat dan mode periksa */
+.gate-error { margin-top: 1.25rem; padding: .75rem 1rem; border: 1px dashed var(--brass-soft); color: #FFD1E3; font-size: .8125rem; text-align: left; overflow-wrap: anywhere; }
+.debug { position: fixed; left: 0; right: 0; top: 0; z-index: 60; background: #7A0F3B; color: #FFFFFF; font: 12px/1.5 var(--mono); padding: .6rem 1rem; white-space: pre-wrap; max-height: 40vh; overflow: auto; }
+
+/* Menu bawah dan tombol musik */
+.nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--ink); border-top: 1px solid #3A2F36; padding-bottom: env(safe-area-inset-bottom, 0px); }
+.nav ul { list-style: none; margin: 0 auto; padding: 0; display: flex; max-width: 34rem; }
+.nav li { flex: 1; min-width: 0; }
+.nav a { display: block; text-align: center; padding: .75rem .1rem .7rem; font-size: .625rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: #C9AEBB; text-decoration: none; border-top: 2px solid transparent; margin-top: -1px; overflow: hidden; text-overflow: ellipsis; }
+.nav a.on { color: var(--brass-soft); border-top-color: var(--brass-soft); }
+.music { position: fixed; right: .75rem; bottom: calc(3.6rem + env(safe-area-inset-bottom, 0px)); z-index: 20; width: 2.75rem; height: 2.75rem; border-radius: 50%; border: 1px solid var(--brass-soft); background: var(--ink); color: var(--brass-soft); display: grid; place-items: center; cursor: pointer; padding: 0; }
+.music:hover { background: var(--brass-soft); color: var(--ink); }
+.music .slash { display: none; }
+.music.paused .slash { display: inline; }
+
+@media (min-width: 44rem) {
+  .couple { grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn { transition: background .2s, color .2s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gate { transition: none; }
+}
+</style>
+</head><body class="locked">
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-label="Buka undangan">
+  <div class="gate-inner">
+    <p class="label">Undangan Pernikahan</p>
+    <h1><span data-k="namaCPP"></span><span class="amp-s">&amp;</span><span data-k="namaCPW"></span></h1>
+    <p class="date" data-k="tglAkad"></p>
+    <p class="gate-to" id="gate-to" hidden>Kepada Yth.<b id="gate-name"></b></p>
+    <p class="gate-note" id="gate-note" hidden>Mohon maaf apabila ada kesalahan penulisan nama atau gelar.</p>
+    <p class="gate-error" id="gate-error" hidden></p>
+    <button class="btn open" type="button" id="open">Buka Undangan</button>
+  </div>
+</div>
+
+<section class="cover" id="home" tabindex="-1">
+  <div class="wrap">
+    <p class="label">Undangan Pernikahan</p>
+    <h1><span data-k="namaCPP"></span><span class="amp-s">&amp;</span><span data-k="namaCPW"></span></h1>
+    <p class="date" data-k="tglAkad"></p>
+    <div class="duo" aria-hidden="true"><span class="ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 5l-4 14"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="rotate(-35 12 12)"><rect x="2.5" y="8" width="19" height="8" rx="4"/><path d="M12 8v8"/></g></svg></span></div>
+    <hr class="rule">
+    <p>Kami mengundang Anda untuk hadir dan memberikan doa restu pada hari bahagia kami.</p>
+    <div class="count" aria-label="Hitung mundur menuju hari pernikahan">
+      <div><b id="cd-d">0</b><small>Hari</small></div>
+      <div><b id="cd-h">0</b><small>Jam</small></div>
+      <div><b id="cd-m">0</b><small>Menit</small></div>
+      <div><b id="cd-s">0</b><small>Detik</small></div>
+    </div>
+    <a class="btn cal" id="cal" href="#" target="_blank" rel="noopener">Simpan ke Google Kalender</a>
+  </div>
+</section>
+
+<section class="opening" id="mempelai">
+  <div class="wrap">
+    <p class="label">Assalamu'alaikum Wr. Wb.</p>
+    <p class="verse">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."</p>
+    <p class="ref">QS. Ar-Rum ayat 21</p>
+    <p class="intro">Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami.</p>
+    <div class="couple">
+      <div class="person">
+        <div class="ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 5l-4 14"/></svg></div>
+        <p class="role">Information Technology</p>
+        <h2 data-k="namaCPP"></h2>
+        <p class="parents">Putra dari Bapak <span data-k="ayahCPP"></span><br>dan Ibu <span data-k="ibuCPP"></span></p>
+        <a class="ig" id="ig-cpp" href="#" target="_blank" rel="noopener" hidden></a>
+        <p class="snippet term" aria-hidden="true">$ ssh cpp@hati-cpw
+&gt; MFA: restu orang tua ... OK
+&gt; Access granted
+&gt; 0 vulnerability found</p>
+      </div>
+      <div class="amp" aria-hidden="true">&amp;</div>
+      <div class="person">
+        <div class="ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="rotate(-35 12 12)"><rect x="2.5" y="8" width="19" height="8" rx="4"/><path d="M12 8v8"/></g></svg></div>
+        <p class="role">Apoteker</p>
+        <h2 data-k="namaCPW"></h2>
+        <p class="parents">Putri dari Bapak <span data-k="ayahCPW"></span><br>dan Ibu <span data-k="ibuCPW"></span></p>
+        <a class="ig" id="ig-cpw" href="#" target="_blank" rel="noopener" hidden></a>
+        <p class="snippet resep" aria-hidden="true">R/ Cinta ........ 100%
+   Setia ........ q.s.
+S. 1 x seumur hidup
+Pro: <span data-k="namaCPP"></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="kisah" hidden>
+  <div class="wrap">
+    <p class="label">Kisah Kami</p>
+    <h2 class="title">Perjalanan Kami</h2>
+    <ol class="timeline" id="timeline"></ol>
+  </div>
+</section>
+
+<section class="events" id="acara">
+  <div class="wrap">
+    <p class="label">Rangkaian Acara</p>
+    <h2 class="title">Waktu dan Tempat</h2>
+    <div class="event-list">
+      <article class="event">
+        <h3>Akad Nikah</h3>
+        <dl>
+          <dt>Hari</dt><dd data-k="tglAkad"></dd>
+          <dt>Pukul</dt><dd data-k="jamAkad"></dd>
+          <dt>Tempat</dt><dd><span data-k="tempatAkad"></span><br><span data-k="alamatAkad"></span></dd>
+        </dl>
+        <a class="btn ghost" id="map-akad" href="#" target="_blank" rel="noopener">Buka Google Maps</a>
+      </article>
+      <article class="event">
+        <h3>Resepsi</h3>
+        <dl>
+          <dt>Hari</dt><dd data-k="tglResepsi"></dd>
+          <dt>Pukul</dt><dd data-k="jamResepsi"></dd>
+          <dt>Tempat</dt><dd><span data-k="tempatResepsi"></span><br><span data-k="alamatResepsi"></span></dd>
+        </dl>
+        <a class="btn ghost" id="map-resepsi" href="#" target="_blank" rel="noopener">Buka Google Maps</a>
+      </article>
+    </div>
+    <div class="attire">
+      <p class="label">Dress Code</p>
+      <p class="attire-text" data-k="busana"></p>
+      <ul class="swatches" id="swatches"></ul>
+    </div>
+    <div class="stream" id="stream" hidden>
+      <p class="label">Siaran Langsung</p>
+      <p class="ket">Bagi yang belum bisa hadir, ikuti acara kami secara daring.</p>
+      <a class="btn ghost" id="stream-link" href="#" target="_blank" rel="noopener">Tonton Siaran</a>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galeri">
+  <div class="wrap">
+    <p class="label">Galeri</p>
+    <h2 class="title">Prewedding</h2>
+    <div class="grid" id="gallery"></div>
+  </div>
+</section>
+
+<section id="ucapan">
+  <div class="wrap">
+    <p class="label">Konfirmasi Kehadiran</p>
+    <h2 class="title">Ucapan dan Doa</h2>
+    <p class="hint" style="margin-top:.75rem">Ucapan dari para tamu. Ketuk tombol di bawah untuk menulis ucapan dan konfirmasi kehadiran.</p>
+    <div class="chat">
+      <div class="chat-head"><b>Ucapan tamu</b><span id="chat-count"></span></div>
+      <ol class="chat-log" id="chat-log" role="log" aria-label="Ucapan dan doa dari tamu" tabindex="0"></ol>
+      <div class="chat-bar">
+        <a class="write" id="chat-write" href="#" target="_blank" rel="noopener">Tulis ucapan untuk mempelai</a>
+      </div>
+    </div>
+    <p class="hint" id="chat-note" style="margin-top:.75rem" hidden></p>
+  </div>
+</section>
+
+<section class="gift" id="hadiah">
+  <div class="wrap">
+    <p class="label">Amplop Digital</p>
+    <h2 class="title">Tanda Kasih</h2>
+    <p class="sub">Doa restu Anda sudah cukup bagi kami. Bila ingin berbagi tanda kasih, dapat dikirim melalui rekening berikut.</p>
+    <div class="banks" id="banks"></div>
+    <div class="kado" id="kado" hidden>
+      <p class="label">Kirim Kado</p>
+      <p class="addr" id="kado-addr"></p>
+    </div>
+  </div>
+</section>
+
+<section class="closing" id="penutup">
+  <div class="wrap">
+    <p class="label">Wassalamu'alaikum Wr. Wb.</p>
+    <h2>Terima kasih</h2>
+    <p class="thanks">Kehadiran dan doa Anda menjadi kebahagiaan bagi kami dan keluarga.</p>
+    <p class="sign"><span data-k="namaCPP"></span> &amp; <span data-k="namaCPW"></span></p>
+  </div>
+</section>
+<footer>Keluarga Besar <span data-k="namaCPP"></span> dan <span data-k="namaCPW"></span></footer>
+
+<nav class="nav" id="nav" aria-label="Menu undangan" hidden>
+  <ul>
+    <li><a href="#home">Beranda</a></li>
+    <li><a href="#mempelai">Mempelai</a></li>
+    <li><a href="#acara">Acara</a></li>
+    <li><a href="#galeri">Galeri</a></li>
+    <li><a href="#ucapan">Ucapan</a></li>
+    <li><a href="#hadiah">Hadiah</a></li>
+  </ul>
+</nav>
+
+<button class="music paused" type="button" id="music" aria-label="Putar musik" hidden>
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path class="slash" d="M3 3l18 18"/></svg>
+</button>
+
+<script>
+(function () {
+  function $(id) { return document.getElementById(id); }
+  if (!window.__cfgOk || typeof CONFIG === "undefined") {
+    var er = $("gate-error");
+    er.textContent = "Undangan belum bisa ditampilkan karena ada kesalahan di bagian CONFIG pada index.html (biasanya tanda kutip atau koma yang kurang). " +
+      (window.__errs && window.__errs.length ? "Galat: " + window.__errs[0] : "Tekan F12 lalu buka tab Console untuk melihat baris yang bermasalah.");
+    er.hidden = false;
+    $("open").addEventListener("click", function () { document.body.classList.remove("locked"); $("gate").hidden = true; });
+    return;
+  }
+  var C = CONFIG;
+  var debug = /[?&]debug(=|&|$)/.test(location.search);
+  var banner = null;
+  function box(text) {
+    if (!debug) return;
+    if (!banner) { banner = document.createElement("div"); banner.className = "debug"; banner.setAttribute("role", "status"); document.body.appendChild(banner); }
+    banner.textContent = banner.textContent ? banner.textContent + "\n" + text : text;
+  }
+  var problems = 0;
+  function report(msg) {
+    problems++;
+    try { console.warn("[Undangan] " + msg); } catch (e) {}
+    box("- " + msg);
+  }
+  function checkImg(src) { var t = new Image(); t.onerror = function () { report("Foto tidak ditemukan: " + src); }; t.src = src; }
+  if (debug) box("MODE PERIKSA (tamu tidak melihat ini)");
+  window.addEventListener("error", function (e) { if (e.message && !(e.target && e.target !== window)) report("Galat: " + e.message + " (baris " + e.lineno + ")"); });
+  if (debug) setTimeout(function () { if (!problems) box("Semua foto dan lagu yang ditulis di CONFIG berhasil dimuat."); }, 2500);
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var HARI = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+  var BULAN = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+  function tgl(iso) {
+    var p = String(iso).split("-");
+    var d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
+    if (isNaN(d.getTime())) return iso;
+    return HARI[d.getUTCDay()] + ", " + (+p[2]) + " " + BULAN[+p[1] - 1] + " " + p[0];
+  }
+
+  /* Isi semua teks dari CONFIG */
+  var T = {
+    namaCPP: C.namaCPP, namaCPW: C.namaCPW,
+    ayahCPP: C.ayahCPP, ibuCPP: C.ibuCPP, ayahCPW: C.ayahCPW, ibuCPW: C.ibuCPW,
+    tglAkad: tgl(C.akad.tanggal), jamAkad: C.akad.jam, tempatAkad: C.akad.tempat, alamatAkad: C.akad.alamat,
+    tglResepsi: tgl(C.resepsi.tanggal), jamResepsi: C.resepsi.jam, tempatResepsi: C.resepsi.tempat, alamatResepsi: C.resepsi.alamat,
+    busana: C.busana
+  };
+  Array.prototype.forEach.call(document.querySelectorAll("[data-k]"), function (el) {
+    var v = T[el.getAttribute("data-k")];
+    el.textContent = v == null ? "" : v;
+  });
+  try { document.title = "Undangan Pernikahan " + C.namaCPP + " & " + C.namaCPW; } catch (e) {}
+
+  function mapsLink(ev) {
+    return ev.maps || ("https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(ev.tempat + " " + ev.alamat));
+  }
+  $("map-akad").href = mapsLink(C.akad);
+  $("map-resepsi").href = mapsLink(C.resepsi);
+
+  /* Instagram */
+  [["ig-cpp", C.igCPP], ["ig-cpw", C.igCPW]].forEach(function (x) {
+    var h = String(x[1] || "").replace(/^@/, "").trim();
+    if (!h) return;
+    var a = $(x[0]); a.href = "https://instagram.com/" + encodeURIComponent(h); a.textContent = "@" + h; a.hidden = false;
+  });
+
+  /* Kisah */
+  var tl = $("timeline");
+  (C.kisah || []).forEach(function (k) {
+    var li = document.createElement("li");
+    var y = document.createElement("p"); y.className = "tl-year"; y.textContent = k.tahun || "";
+    var h = document.createElement("h3"); h.textContent = k.judul || "";
+    var p = document.createElement("p"); p.textContent = k.teks || "";
+    li.append(y, h, p); tl.appendChild(li);
+  });
+  if (tl.children.length) $("kisah").hidden = false;
+
+  /* Warna busana */
+  var sw = $("swatches");
+  (C.warnaBusana || []).forEach(function (w) {
+    var li = document.createElement("li");
+    var i = document.createElement("i"); i.style.background = w.hex; i.setAttribute("aria-hidden", "true");
+    var s = document.createElement("span"); s.textContent = w.nama;
+    li.append(i, s); sw.appendChild(li);
+  });
+  if (!sw.children.length) sw.hidden = true;
+
+  /* Siaran langsung */
+  if (C.streaming) { $("stream-link").href = C.streaming; $("stream").hidden = false; }
+
+  /* Rekening dan kado */
+  var rekList = Array.isArray(C.rekening) ? C.rekening : (C.rekening ? [C.rekening] : []);
+  var banks = $("banks");
+  rekList.forEach(function (r) {
+    var box = document.createElement("div"); box.className = "bank";
+    var small = document.createElement("small"); small.textContent = "Bank " + r.bank + " a.n. " + r.atasNama;
+    var num = document.createElement("b"); num.textContent = r.nomor;
+    var btn = document.createElement("button"); btn.type = "button"; btn.className = "btn"; btn.textContent = "Salin nomor rekening";
+    btn.addEventListener("click", function () {
+      var done = function () { btn.textContent = "Nomor tersalin"; setTimeout(function () { btn.textContent = "Salin nomor rekening"; }, 2000); };
+      var fallback = function () {
+        var rg = document.createRange(); rg.selectNodeContents(num);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(rg);
+        btn.textContent = "Tekan Salin pada nomor yang terpilih";
+      };
+      try { navigator.clipboard.writeText(String(r.nomor)).then(done, fallback); } catch (err) { fallback(); }
+    });
+    box.append(small, num, btn); banks.appendChild(box);
+  });
+  if (C.alamatKado) { $("kado-addr").textContent = C.alamatKado; $("kado").hidden = false; }
+
+  /* Kalender */
+  (function () {
+    var s = new Date(C.akad.tanggal + "T" + C.akad.mulai + ":00+07:00");
+    if (isNaN(s.getTime())) { $("cal").hidden = true; return; }
+    var e = new Date(s.getTime() + 6 * 3600 * 1000);
+    function f(d) { return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); }
+    $("cal").href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+      "&text=" + encodeURIComponent("Pernikahan " + C.namaCPP + " & " + C.namaCPW) +
+      "&dates=" + f(s) + "/" + f(e) +
+      "&details=" + encodeURIComponent("Akad: " + C.akad.jam + " di " + C.akad.tempat + ". Resepsi: " + C.resepsi.jam + " di " + C.resepsi.tempat + ".") +
+      "&location=" + encodeURIComponent(C.akad.tempat + ", " + C.akad.alamat);
+  })();
+
+  /* Hitung mundur ke jam mulai akad (WIB) */
+  var target = new Date(C.akad.tanggal + "T" + C.akad.mulai + ":00+07:00").getTime();
+  var ids = { d: "cd-d", h: "cd-h", m: "cd-m", s: "cd-s" };
+  function tick() {
+    var diff = isNaN(target) ? 0 : Math.max(0, target - Date.now());
+    var s = Math.floor(diff / 1000);
+    var vals = { d: Math.floor(s / 86400), h: Math.floor(s % 86400 / 3600), m: Math.floor(s % 3600 / 60), s: s % 60 };
+    for (var k in ids) $(ids[k]).textContent = vals[k];
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* Foto sampul dan galeri */
+  (function () {
+    var L = C.latar || {};
+    var map = { gate: L.gerbang || C.fotoSampul, home: L.beranda || C.fotoSampul, acara: L.acara, hadiah: L.hadiah, penutup: L.penutup };
+    Object.keys(map).forEach(function (id) {
+      var src = map[id], el = $(id);
+      if (!src || !el) return;
+      el.style.setProperty("--bg", 'url("' + String(src).replace(/"/g, "%22") + '")');
+      el.classList.add("has-bg");
+      checkImg(src);
+    });
+  })();
+  var lb = document.createElement("div"); lb.className = "lightbox"; lb.hidden = true;
+  lb.setAttribute("role", "dialog"); lb.setAttribute("aria-modal", "true"); lb.setAttribute("aria-label", "Foto diperbesar");
+  var lbImg = document.createElement("img");
+  var lbClose = document.createElement("button"); lbClose.type = "button"; lbClose.textContent = "Tutup";
+  lb.append(lbImg, lbClose); document.body.appendChild(lb);
+  var lbFrom = null;
+  function openPhoto(src, alt, from) { lbImg.src = src; lbImg.alt = alt; lbFrom = from; lb.hidden = false; lbClose.focus(); }
+  function closePhoto() { lb.hidden = true; lbImg.removeAttribute("src"); if (lbFrom) lbFrom.focus(); }
+  lbClose.addEventListener("click", closePhoto);
+  lb.addEventListener("click", function (e) { if (e.target === lb) closePhoto(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !lb.hidden) closePhoto(); });
+
+  var gal = $("gallery");
+  var fotos = C.foto || [];
+  if (!fotos.length) {
+    for (var pi = 0; pi < 3; pi++) {
+      var ph = document.createElement("div"); ph.className = "shot ph"; ph.textContent = "Foto prewedding"; gal.appendChild(ph);
+    }
+  } else {
+    fotos.forEach(function (src, i) {
+      var b = document.createElement("button"); b.type = "button"; b.className = "shot";
+      b.setAttribute("aria-label", "Perbesar foto " + (i + 1));
+      var im = new Image(); im.alt = "Foto prewedding " + (i + 1); im.loading = "lazy"; im.decoding = "async";
+      im.onerror = function () { report("Foto galeri tidak ditemukan: " + src); };
+      im.src = src;
+      b.appendChild(im);
+      b.addEventListener("click", function () { openPhoto(src, im.alt, b); });
+      gal.appendChild(b);
+    });
+    if (fotos.length > 1 && (fotos.length - 1) % 2 === 1) gal.lastChild.classList.add("wide");
+  }
+
+  /* Kolom chat ucapan */
+  var log = $("chat-log");
+  var note = $("chat-note");
+  function statusKind(s) {
+    s = String(s || "").toLowerCase();
+    if (s.indexOf("tidak") > -1 || s.indexOf("berhalangan") > -1) return "no";
+    if (s.indexOf("insya") > -1 || s.indexOf("insha") > -1) return "maybe";
+    return "yes";
+  }
+  function render(list) {
+    log.textContent = "";
+    if (!list.length) {
+      var li0 = document.createElement("li"); li0.className = "empty"; li0.textContent = "Belum ada ucapan. Jadilah yang pertama.";
+      log.appendChild(li0);
+    }
+    var n = { yes: 0, maybe: 0, no: 0 };
+    list.forEach(function (m) {
+      var kind = statusKind(m.status); n[kind]++;
+      var li = document.createElement("li"); li.className = "msg";
+      var av = document.createElement("div"); av.className = "avatar"; av.setAttribute("aria-hidden", "true");
+      av.textContent = (m.nama || "?").trim().charAt(0).toUpperCase();
+      var bub = document.createElement("div"); bub.className = "bubble";
+      var head = document.createElement("header");
+      var nm = document.createElement("strong"); nm.textContent = m.nama;
+      var chip = document.createElement("span"); chip.className = "chip" + (kind === "no" ? " no" : kind === "maybe" ? " maybe" : "");
+      chip.textContent = m.status || "Hadir";
+      var tm = document.createElement("span"); tm.className = "time"; tm.textContent = m.waktu || "";
+      head.append(nm, chip, tm);
+      var tx = document.createElement("p"); tx.textContent = m.teks;
+      bub.append(head, tx); li.append(av, bub); log.appendChild(li);
+    });
+    var parts = [n.yes + " hadir"];
+    if (n.maybe) parts.push(n.maybe + " insya allah");
+    parts.push(n.no + " tidak hadir");
+    $("chat-count").textContent = parts.join(", ");
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function parseCSV(t) {
+    var rows = [], row = [], f = "", q = false;
+    for (var i = 0; i < t.length; i++) {
+      var ch = t[i];
+      if (q) {
+        if (ch === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += ch;
+      } else if (ch === '"') q = true;
+      else if (ch === ",") { row.push(f); f = ""; }
+      else if (ch === "\n") { row.push(f); rows.push(row); row = []; f = ""; }
+      else if (ch !== "\r") f += ch;
+    }
+    if (f !== "" || row.length) { row.push(f); rows.push(row); }
+    return rows;
+  }
+  function fromCSV(text) {
+    text = text.replace(/^﻿/, "");
+    var rows = parseCSV(text);
+    if (!rows.length) return [];
+    function find(row, re) { for (var i = 0; i < row.length; i++) if (re.test((row[i] || "").toLowerCase())) return i; return -1; }
+    var hi = 0;
+    for (var r0 = 0; r0 < Math.min(5, rows.length); r0++) {
+      if (find(rows[r0], /nama/) > -1 && find(rows[r0], /ucapan/) > -1) { hi = r0; break; }
+    }
+    var head = rows[hi];
+    var iNama = find(head, /nama/), iHadir = find(head, /hadir/), iUcap = find(head, /ucapan/), iWaktu = find(head, /cap waktu|timestamp|waktu|tanggal/);
+    if (iNama < 0 || iUcap < 0) {
+      if (head.length >= 4) { iWaktu = 0; iNama = 1; iHadir = 2; iUcap = 3; hi = 0; } /* urutan standar Google Form */
+      else { var e = new Error("kolom"); e.detail = head.join(" | "); throw e; }
+    }
+    var out = [];
+    rows.slice(hi + 1).forEach(function (r) {
+      var nama = (r[iNama] || "").trim(), teks = (r[iUcap] || "").trim();
+      if (!nama && !teks) return;
+      out.push({ nama: nama || "Tamu", status: iHadir > -1 ? (r[iHadir] || "").trim() : "", waktu: iWaktu > -1 ? (r[iWaktu] || "").trim().split(" ")[0] : "", teks: teks });
+    });
+    return out;
+  }
+  function loadSheet() {
+    var u = C.sheetCsv + (C.sheetCsv.indexOf("?") > -1 ? "&" : "?") + "_=" + Date.now();
+    fetch(u, { cache: "no-store" })
+      .then(function (r) { if (!r.ok) { var er = new Error("http"); er.status = r.status; throw er; } return r.text(); })
+      .then(function (t) { render(fromCSV(t)); note.hidden = true; })
+      .catch(function (e) {
+        var m = "Ucapan belum bisa dimuat.";
+        if (e && e.message === "http") m += " Google membalas kode " + e.status + ". Pastikan tab jawaban masih dipublikasikan ke web.";
+        else if (e && e.message === "kolom") m += " Judul kolom tidak dikenali: " + e.detail;
+        else m += " Periksa koneksi internet atau link sheetCsv.";
+        note.textContent = m; note.hidden = false;
+      });
+  }
+  if (C.sheetCsv) { render([]); loadSheet(); setInterval(loadSheet, 60000); }
+  else { render(C.ucapanContoh); }
+
+  var write = $("chat-write");
+  if (C.formUrl) { write.href = C.formUrl; }
+  else { write.setAttribute("aria-disabled", "true"); write.removeAttribute("target"); note.textContent = "Link formulir ucapan belum diisi."; note.hidden = false; }
+
+  /* Nama tamu dari link, contoh ?to=Budi+Santoso */
+  var guest = "";
+  try { guest = (new URLSearchParams(location.search).get("to") || "").replace(/\s+/g, " ").trim().slice(0, 120); } catch (err) {}
+  if (guest) {
+    $("gate-name").textContent = guest;
+    $("gate-to").hidden = false;
+    $("gate-note").hidden = false;
+  }
+
+  /* Musik */
+  var audio = null, musicBtn = $("music");
+  if (C.musik) {
+    audio = new Audio(C.musik); audio.loop = true; audio.preload = "none";
+    var sync = function () {
+      var on = !audio.paused;
+      musicBtn.classList.toggle("paused", !on);
+      musicBtn.setAttribute("aria-label", on ? "Jeda musik" : "Putar musik");
+    };
+    audio.addEventListener("play", sync); audio.addEventListener("pause", sync);
+    audio.addEventListener("error", function () { report("Lagu tidak ditemukan atau formatnya tidak didukung: " + C.musik); });
+    if (debug) audio.load();
+    musicBtn.addEventListener("click", function () {
+      if (audio.paused) { var pr = audio.play(); if (pr && pr.catch) pr.catch(function () {}); } else audio.pause();
+    });
+  }
+
+  /* Buka undangan */
+  var gate = $("gate");
+  function openInvite() {
+    document.body.classList.remove("locked");
+    $("nav").hidden = false;
+    if (audio) {
+      musicBtn.hidden = false;
+      var pr = audio.play(); if (pr && pr.catch) pr.catch(function () {});
+    }
+    window.scrollTo(0, 0);
+    if (reduce) { gate.hidden = true; }
+    else { gate.classList.add("leaving"); setTimeout(function () { gate.hidden = true; }, 520); }
+    try { $("home").focus({ preventScroll: true }); } catch (err) {}
+  }
+  $("open").addEventListener("click", openInvite);
+
+  /* Menu bawah */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll("#nav a"));
+  var targets = navLinks.map(function (a) { return $(a.getAttribute("href").slice(1)); });
+  navLinks.forEach(function (a, i) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (targets[i]) targets[i].scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    });
+  });
+  var spyQueued = false;
+  function spy() {
+    spyQueued = false;
+    var y = window.innerHeight * 0.4, cur = 0;
+    targets.forEach(function (t, i) { if (t && !t.hidden && t.getBoundingClientRect().top <= y) cur = i; });
+    navLinks.forEach(function (a, i) {
+      a.classList.toggle("on", i === cur);
+      if (i === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+    });
+  }
+  window.addEventListener("scroll", function () { if (!spyQueued) { spyQueued = true; requestAnimationFrame(spy); } }, { passive: true });
+  window.addEventListener("resize", spy);
+  spy();
+})();
+</script>
+</body></html>
